@@ -80,7 +80,7 @@
   };
 
   class Product {
-    constructor(id, data ) {
+    constructor(id, data) {
       const thisProduct = this;
       thisProduct.id = id;
       thisProduct.data = data;
@@ -89,7 +89,7 @@
 
       console.log('new Product:', thisProduct);
     }
-    renderInMenu(){
+    renderInMenu() {
       const thisProduct = this;
 
       /*generate HTML based on template*/
@@ -105,6 +105,7 @@
 
       /*add element to menu */
       menuContainer.appendChild(thisProduct.element);
+
     }
   }
 
