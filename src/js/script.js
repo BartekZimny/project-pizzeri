@@ -86,7 +86,6 @@
 
       thisProduct.id = id;
       thisProduct.data = data;
-
       thisProduct.renderInMenu();
       thisProduct.initAccordion();
 
@@ -97,11 +96,14 @@
 
       /*generate HTML based on template*/
       const generatedHTML = templates.menuProduct(thisProduct.data);
+
       //console.log('generatedHTML:', generatedHTML);
       /*create element using utils.createElementFromHTML */
       thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+
       /* find menu container*/
       const menuContainer = document.querySelector(select.containerOf.menu);
+      
       //console.log('menuContainer:', menuContainer);
       /*add element to menu */
       menuContainer.appendChild(thisProduct.element);
@@ -128,10 +130,10 @@
         for (let activeProduct of activeProducts) {
           console.log('activeProduct', activeProduct);
           /* START: if the active product isn't the element of thisProduct */
-          if (activeProduct != thisProduct) {
+          if (activeProduct != thisProduct.element) {
             /* remove class active for the active product */
-            thisProduct.element.classList.remove('active');
-            console.log('thisProductInactive', thisProduct);
+            activeProduct.classList.remove('active');
+            console.log('thisProductInactive', activeProduct);
             /* END: if the active product isn't the element of thisProduct */
           }
           /* END LOOP: for each active product */
