@@ -88,7 +88,7 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
-      //thisProduct.initAccordion();
+      thisProduct.initAccordion();
 
       console.log('new Product:', thisProduct);
     }
@@ -109,18 +109,18 @@
     initAccordion() {
       const thisProduct = this;
       console.log('thisinitAccordion:', thisProduct);
-
       /* find the clickable trigger (the element that should react to clicking) */
-      const clickableTrigger = document.querySelector(select.menuProduct.clickable);
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
       console.log('clickableTrigger:', clickableTrigger);
       /* START: click event listener to trigger */
       clickableTrigger.addEventListener('click', function (event) {
-        console.log('clicked');
+        console.log('clicked', event);
         /* prevent default action for event */
         event.preventDefault();
+        console.log(event);
         /* toggle active class on element of thisProduct */
         //thisProduct.element.classList.toggle('active');
-
+        //console.log('thisProduct.element:', thisProduct);
         /* find all active products */
         //const activeProducts = thisProduct.querySelectorAll(select.menuProductsActive);
         //console.log('activeProducts:', activeProducts);
