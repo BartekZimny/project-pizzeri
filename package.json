@@ -33,7 +33,7 @@
         "autoprefixer-cli": "^1.0.0",
         "browser-sync": "^2.26.3",
         "copyfiles": "^2.1.0",
-        "eslint": "^5.14.1",
+        "eslint": "^5.16.0",
         "globstar": "^1.0.0",
         "mkdirp": "^0.5.1",
         "node-sass": "^4.11.0",
