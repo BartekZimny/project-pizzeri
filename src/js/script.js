@@ -192,10 +192,12 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
       //console.log('formData:', formData);
       /* set variable price to equal thisProduct.data.price */
-      const price = thisProduct.data.price;
+      let price = thisProduct.data.price;
       console.log('price:', price);
       /* START LOOP: for each paramId in thisProduct.data.params */
       for (let paramId in thisProduct.data.params) {
+        //console.log('thisProduct.data.params:', thisProduct.data.params);
+        console.log('thisProduct.data:', thisProduct.data);
         //console.log('paramId:', paramId);
         /* save the element in thisProduct.data.params with key paramId as const param */
         const param = thisProduct.data.params[paramId];
@@ -205,10 +207,13 @@
           //console.log('optionId', optionId);
           /* save the element in param.options with key optionId as const option */
           const option = param.options[optionId];
-          //console.log('option:', option);
+          console.log('option:', option);
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+          //console.log('optionSelected:', optionSelected);
           /* START IF: if option is selected and option is not default */
-          if (option.selected && !option.default) {
-            console.log('!option.default:', option.default);
+          if (optionSelected && !option.default) {
+            console.log('optionSelected:', optionSelected);
+            console.log('!option.default:', !option.default);
             /* add price of option to variable price */
             thisProduct.priceElem += price;
             //price += thisProduct.priceElem;
@@ -217,7 +222,7 @@
             /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
-          else if (option.selected && option.default) {
+          else if (!optionSelected && option.default) {
             console.log('option.default:', option.default);
             /* deduct price of option from price */
             thisProduct.priceElem -= price;
@@ -229,9 +234,7 @@
         /* END LOOP: for each paramId in thisProduct.data.params */
       }
       /* set the contents of thisProduct.priceElem to be the value of variable price */
-
-
-
+      thisProduct.priceElem = price;
     }
   }
   app.init();
