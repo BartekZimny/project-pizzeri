@@ -8,11 +8,7 @@ utils.createDOMFromHTML = function(htmlString) {
   return div.firstChild;
 };
 
-utils.createPropIfUndefined = function(obj, key, value = []){
-  if(!obj.hasOwnProperty(key)){
-    obj[key] = value;
-  }
-};
+
 
 utils.serializeFormToObject = function(form){
   let output = {};
