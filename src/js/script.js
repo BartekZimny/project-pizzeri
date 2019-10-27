@@ -242,30 +242,25 @@
 
 
 
-          /* NEW create const with all images with active class visible*/
-          const activeVisibleImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+           /* NEW :create const with all images with active class visible*/
+          const activeVisibleImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           //console.log('activeVisibleImages', activeVisibleImages);
-          /* NEW START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
-          if (optionSelected && activeVisibleImages) {
-            for (let activeVisibleImage of activeVisibleImages) {
-              //console.log('activeVisibleImage:', activeVisibleImage);
-              /* NEW add class active */
-              activeVisibleImage.classList.add(classNames.menuProduct.imageVisible);
-              console.log('activeVisibleImage:', activeVisibleImage);
-              /* NEW START ELSE:*/
-            } else {
-              /* NEW remove class active*/
-              activeVisibleImage.classList.remove(classNames.menuProduct.imageVisible);
-              console.log('inactiveVisibleImage:', activeVisibleImage);
-            }
-
+          /* NEW: START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
+          if (optionSelected && activeVisibleImage) {
+            /* NEW: add class active */
+            activeVisibleImage.classList.add(classNames.menuProduct.imageVisible);
+            //console.log('addVisibleImage:', activeVisibleImage);
           }
-        }
-
-
-
-
-
+          /* NEW: START ELSE: not selected*/
+          else {
+            if (activeVisibleImage) {
+              /*remove calss active*/
+              activeVisibleImage.classList.remove(classNames.menuProduct.imageVisible);
+              //console.log('removeVisibleImage:', activeVisibleImage);
+              /* NEW: END if*/
+            }
+            /* NEW: END else not selected*/
+          }
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
@@ -275,4 +270,12 @@
     }
   }
   app.init();
+}
+class AmountWidget {
+  constructor(element) {
+    const thisWidget = this;
+
+    console.log('AmountWidget', thisWidget);
+    console.log('constructor argument', element);
+  }
 }
