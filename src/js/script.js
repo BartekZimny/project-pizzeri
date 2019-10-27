@@ -239,6 +239,33 @@
 
             /* END ELSE IF: if option is not selected and option is default */
           }
+
+
+
+          /* NEW create const with all images with active class visible*/
+          const activeVisibleImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          //console.log('activeVisibleImages', activeVisibleImages);
+          /* NEW START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
+          if (optionSelected && activeVisibleImages) {
+            for (let activeVisibleImage of activeVisibleImages) {
+              //console.log('activeVisibleImage:', activeVisibleImage);
+              /* NEW add class active */
+              activeVisibleImage.classList.add(classNames.menuProduct.imageVisible);
+              console.log('activeVisibleImage:', activeVisibleImage);
+              /* NEW START ELSE:*/
+            } else {
+              /* NEW remove class active*/
+              activeVisibleImage.classList.remove(classNames.menuProduct.imageVisible);
+              console.log('inactiveVisibleImage:', activeVisibleImage);
+            }
+
+          }
+        }
+
+
+
+
+
           /* END LOOP: for each optionId in param.options */
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
