@@ -270,15 +270,20 @@
 
         /* END LOOP: for each paramId in thisProduct.data.params */
       }
-
+      /* multiply price by amount */
+      price *= thisProduct.amountWidget.value;
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
     }
-
     initAmountWidget() {
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+
+      thisProduct.amountWidgetElem.addEventListener('updated', function (event) {
+        console.log(event);
+        thisProduct.processOrder();
+      });
     }
   }
 
@@ -287,8 +292,10 @@
       const thisWidget = this;
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
-      console.log('AmountWidget', thisWidget);
+      thisWidget.initActions();
+      //console.log('AmountWidget', thisWidget);
       console.log('constructor argument', element);
+      console.log('initActions', thisWidget.initActions);
     }
     getElements(element) {
       const thisWidget = this;
@@ -306,12 +313,38 @@
       /*TODO: Add validation */
 
       thisWidget.value = newValue;
+      thisWidget.announce();
       thisWidget.input.value = thisWidget.value;
     }
     initActions() {
-      thisWidget.input.addEventListener('change', function (event) {
-        console.log('chnage', event);
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function () {
+        //console.log('chnage', event);
+        thisWidget.value = thisWidget.input.value;
+        console.log('thisWidget.setValue', thisWidget.value);
       });
+
+      thisWidget.linkDecrease.addEventListener('click', function (event) {
+        //console.log('czemu nei działa', event);
+        event.preventDefault();
+
+        thisWidget.setValue(thisWidget.value - 1);
+        console.log('decreaseValue:', thisWidget.value);
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function (event) {
+        //console.log(event);
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+        console.log('IncreaseValue:', thisWidget.value);
+      });
+    }
+    announce() {
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
     }
   }
   app.init();
