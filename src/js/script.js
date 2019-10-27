@@ -69,11 +69,11 @@
 
     init: function () {
       const thisApp = this;
-      //console.log('*** App starting ***');
-      //console.log('thisApp:', thisApp);
-      //console.log('classNames:', classNames);
-      //console.log('settings:', settings);
-      //console.log('templates:', templates);
+      console.log('*** App starting ***');
+      console.log('thisApp:', thisApp);
+      console.log('classNames:', classNames);
+      console.log('settings:', settings);
+      console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
@@ -120,6 +120,7 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
     initAccordion() {
       const thisProduct = this;
@@ -174,9 +175,9 @@
         //console.log('thisProduct.processOrder:', thisProduct.processOrder);
       });
       for (let input of thisProduct.formInputs) {
-        input.addEventListener('change', function () {
+        input.addEventListener('change', function (event) {
           thisProduct.processOrder();
-          //console.log('change', event);
+          console.log('change', event);
         });
         thisProduct.cartButton.addEventListener('click', function (event) {
           event.preventDefault();
@@ -273,15 +274,45 @@
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
     }
+
+    initAmountWidget() {
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
+  }
+
+  class AmountWidget {
+    constructor(element) {
+      const thisWidget = this;
+      thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+      console.log('AmountWidget', thisWidget);
+      console.log('constructor argument', element);
+    }
+    getElements(element) {
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      /*TODO: Add validation */
+
+      thisWidget.value = newValue;
+      thisWidget.input.value = thisWidget.value;
+    }
+    initActions() {
+      thisWidget.input.addEventListener('change', function (event) {
+        console.log('chnage', event);
+      });
+    }
   }
   app.init();
-}
-
-class AmountWidget {
-  constructor(element) {
-    const thisWidget = this;
-
-    console.log('AmountWidget', thisWidget);
-    console.log('constructor argument', element);
-  }
 }
