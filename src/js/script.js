@@ -240,42 +240,39 @@
             /* END ELSE IF: if option is not selected and option is default */
           }
 
-
-
-           /* NEW :create const with all images with active class visible*/
+          /* NEW :create const with all images with active class visible*/
           const activeVisibleImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
           //console.log('activeVisibleImages', activeVisibleImages);
+
           /* NEW: START IF ELSE : if selected and have image, add to imageWrapper 'active' class */
           if (optionSelected && activeVisibleImage) {
             /* NEW: add class active */
             activeVisibleImage.classList.add(classNames.menuProduct.imageVisible);
             //console.log('addVisibleImage:', activeVisibleImage);
           }
+
           /* NEW: START ELSE: not selected*/
           else {
             if (activeVisibleImage) {
               /*remove calss active*/
               activeVisibleImage.classList.remove(classNames.menuProduct.imageVisible);
               //console.log('removeVisibleImage:', activeVisibleImage);
+
               /* NEW: END if*/
             }
+
             /* NEW: END else not selected*/
           }
+
           /* END LOOP: for each optionId in param.options */
         }
+
         /* END LOOP: for each paramId in thisProduct.data.params */
       }
+
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
     }
   }
   app.init();
-}
-class AmountWidget {
-  constructor(element) {
-    const thisWidget = this;
-
-    console.log('AmountWidget', thisWidget);
-    console.log('constructor argument', element);
-  }
 }
