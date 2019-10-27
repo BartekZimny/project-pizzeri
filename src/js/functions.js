@@ -8,7 +8,11 @@ utils.createDOMFromHTML = function(htmlString) {
   return div.firstChild;
 };
 
-
+utils.createPropIfUndefined = function(obj, key, value = []){ 
+  if(!obj.hasOwnProperty(key)){ // eslint-disable-line
+    obj[key] = value; 
+  } 
+}; 
 
 utils.serializeFormToObject = function(form){
   let output = {};
