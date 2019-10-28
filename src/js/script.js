@@ -305,7 +305,7 @@
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function () {
-        thisWidget.value = thisWidget.input.value;
+        thisWidget.setValue(thisWidget.input.value);
       });
 
       thisWidget.linkDecrease.addEventListener('click', function (event) {
