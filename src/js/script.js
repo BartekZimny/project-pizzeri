@@ -87,6 +87,25 @@
     // CODE ADDED END
   };
 
+  class Cart {
+    constructor(element) {
+      const thisCart = this;
+
+      thisCart.products = [];
+      console.log(thisCart.products);
+      thisCart.getElements(element);
+
+      console.log('new Cart', thisCart);
+    }
+    getElements(element) {
+      const thisCart = this;
+
+      thisCart.dom = {};
+
+      thisCart.dom.wrapper = element;
+    }
+  }
+
   const app = {
     initMenu: function () {
       const thisApp = this;
@@ -113,6 +132,15 @@
       thisApp.initData();
       thisApp.initMenu();
     },
+
+    initCart: function () {
+      const thisApp = this;
+
+      const cartElem = document.qurySelector(select.containerof.cart);
+      thisApp.cart = new Cart(cartElem);
+    },
+
+    
   };
 
   class Product {
