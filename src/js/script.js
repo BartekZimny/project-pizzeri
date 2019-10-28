@@ -54,7 +54,6 @@
     // CODE ADDED END
   };
 
-
   const classNames = {
     menuProduct: {
       wrapperActive: 'active',
@@ -94,7 +93,7 @@
       thisCart.products = [];
       console.log(thisCart.products);
       thisCart.getElements(element);
-
+      thisCart.initActions(element);
       console.log('new Cart', thisCart);
     }
     getElements(element) {
@@ -103,45 +102,16 @@
       thisCart.dom = {};
 
       thisCart.dom.wrapper = element;
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+    }
+    initActions(element){
+      const thisCart = this;
+      thisCart.dom.toggleTrigger.addEventListener('click', function(){
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+        console.log('Cart Trigger', thisCart.dom.wrapper);
+      });
     }
   }
-
-  const app = {
-    initMenu: function () {
-      const thisApp = this;
-      //console.log('thisApp.data:', thisApp.data);
-      for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
-      }
-    },
-
-    initData: function () {
-      const thisApp = this;
-
-      thisApp.data = dataSource;
-    },
-
-    init: function () {
-      const thisApp = this;
-      //console.log('*** App starting ***');
-      //console.log('thisApp:', thisApp);
-      //console.log('classNames:', classNames);
-      //console.log('settings:', settings);
-      //console.log('templates:', templates);
-
-      thisApp.initData();
-      thisApp.initMenu();
-    },
-
-    initCart: function () {
-      const thisApp = this;
-
-      const cartElem = document.qurySelector(select.containerof.cart);
-      thisApp.cart = new Cart(cartElem);
-    },
-
-    
-  };
 
   class Product {
     constructor(id, data) {
@@ -390,5 +360,42 @@
       //console.log('announce', thisWidget.element);
     }
   }
+
+  const app = {
+    initMenu: function () {
+      const thisApp = this;
+      //console.log('thisApp.data:', thisApp.data);
+      for (let productData in thisApp.data.products) {
+        new Product(productData, thisApp.data.products[productData]);
+      }
+    },
+
+    initData: function () {
+      const thisApp = this;
+
+      thisApp.data = dataSource;
+    },
+
+    init: function () {
+      const thisApp = this;
+      //console.log('*** App starting ***');
+      //console.log('thisApp:', thisApp);
+      //console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
+
+      thisApp.initData();
+      thisApp.initMenu();
+      thisApp.initCart();
+    },
+
+    initCart: function () {
+      const thisApp = this;
+
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    },
+  };
+
   app.init();
 }
