@@ -112,13 +112,13 @@
         thisCart.dom[key] = thisCart.dom.wrapper.querySelectorAll(select.cart[key]);
       }
     }
-    initActions(element) {
+    initActions() {
       const thisCart = this;
       thisCart.dom.toggleTrigger.addEventListener('click', function () {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
         ////console.log('Cart Trigger', thisCart.dom.wrapper);
       });
-      thisCart.dom.productList.addEventListener('updated', function(){
+      thisCart.dom.productList.addEventListener('updated', function () {
         thisCart.update();
       });
     }
@@ -254,7 +254,7 @@
         ////console.log('thisProduct.processOrder:', thisProduct.processOrder);
       });
       for (let input of thisProduct.formInputs) {
-        input.addEventListener('change', function (event) {
+        input.addEventListener('change', function () {
           thisProduct.processOrder();
           ////console.log('change', event);
         });
@@ -355,7 +355,7 @@
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
 
-      thisProduct.amountWidgetElem.addEventListener('updated', function (event) {
+      thisProduct.amountWidgetElem.addEventListener('updated', function () {
         //console.log(event);
         thisProduct.processOrder();
       });
@@ -466,7 +466,7 @@
 
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
 
-      thisCartProduct.dom.amountWidget.addEventListener('updated', function (event) {
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
         //console.log('cartProduct amountWidget', event);
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
