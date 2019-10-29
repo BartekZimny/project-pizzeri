@@ -118,6 +118,9 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
         ////console.log('Cart Trigger', thisCart.dom.wrapper);
       });
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
+      });
     }
     add(menuProduct) {
       const thisCart = this;
@@ -420,7 +423,9 @@
     announce() {
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
       ////console.log('announce', thisWidget.element);
     }
