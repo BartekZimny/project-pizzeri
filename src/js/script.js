@@ -144,7 +144,6 @@
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
       //console.log('processOrder:', thisProduct.processOrder);
-
       //console.log('new Product:', thisProduct);
     }
     renderInMenu() {
@@ -322,7 +321,6 @@
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-
       thisProduct.amountWidgetElem.addEventListener('updated', function (event) {
         console.log(event);
         thisProduct.processOrder();
