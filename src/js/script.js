@@ -353,6 +353,10 @@
       }
 
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
     }
 
     initActions() {
@@ -382,9 +386,18 @@
       const url = settings.db.url + '/' + settings.db.order;
 
       const payload = {
-        address: 'test',
-        totalPrice: thisCart.totalPrice
+        phone: thisCart.dom.phone,
+        address: thisCart.dom.address,
+        totalNumber: thisCart.totalNumber,
+        subtotalPrice: thisCart.subtotalPrice,
+        deliveryFee: thisCart.deliveryFee,
+        totalPrice: thisCart.totalPrice,
+        products: []
       };
+
+      for (let product of thisCart.products) {
+        payload.products.push(product.getData());
+      }
 
       const options = {
         method: 'POST',
@@ -432,10 +445,6 @@
       }
 
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
-
-      console.log('thisCart.totalNumber', thisCart.totalNumber);
-      console.log('thisCart.subtotalPrice', thisCart.subtotalPrice);
-      console.log('thisCart.totalPrice', thisCart.totalPrice);
 
       for (let key of thisCart.renderTotalsKeys) {
         for (let elem of thisCart.dom[key]) {
@@ -523,6 +532,18 @@
         thisCartProduct.remove();
       });
     }
+
+    getData() {
+      const thisCartProduct = this;
+
+      return {
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        params: thisCartProduct.params
+      };
+    }
   }
 
   const app = {
@@ -567,11 +588,6 @@
 
     init: function() {
       const thisApp = this;
-      //console.log('*** App starting ***');
-      //console.log('thisApp:', thisApp);
-      //console.log('classNames:', classNames);
-      //console.log('settings:', settings);
-      //console.log('templates:', templates);
 
       thisApp.initData();
 
