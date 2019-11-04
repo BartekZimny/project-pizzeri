@@ -200,7 +200,7 @@
           const option = param.options[optionId];
           //console.log('option:', option);
 
-          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1; //eslint-disable-line
           /* START IF: if option is selected and option is not default */
           if (optionSelected && !option.default) {
             /* add price of option to variable price */
@@ -386,8 +386,8 @@
       const url = settings.db.url + '/' + settings.db.order;
 
       const payload = {
-        phone: thisCart.dom.phone,
-        address: thisCart.dom.address,
+        phone: thisCart.dom.phone.value,
+        address: thisCart.dom.address.value,
         totalNumber: thisCart.totalNumber,
         subtotalPrice: thisCart.subtotalPrice,
         deliveryFee: thisCart.deliveryFee,
