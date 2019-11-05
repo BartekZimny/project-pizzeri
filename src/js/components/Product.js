@@ -119,7 +119,7 @@ class Product {
         const option = param.options[optionId];
         //console.log('option:', option);
 
-        const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+        const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1; // eslint-disable-line
         /* START IF: if option is selected and option is not default */
         if (optionSelected && !option.default) {
           /* add price of option to variable price */
