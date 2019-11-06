@@ -4,7 +4,7 @@ import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
 
 const app = {
-  initPages: function() {
+  initPages: function () {
     const thisApp = this;
 
     /* find all subpage containers and all links to subpages */
@@ -31,7 +31,7 @@ const app = {
 
     /* addEventListener to all links that link to the subpages */
     for (let link of thisApp.navLinks) {
-      link.addEventListener('click', function(event) {
+      link.addEventListener('click', function (event) {
         const clickedElement = this;
         event.preventDefault();
 
@@ -47,7 +47,7 @@ const app = {
     }
   },
 
-  activatePage: function(pageId) {
+  activatePage: function (pageId) {
     const thisApp = this;
 
     /* add class "active" to matching pages, remove from non-matching */
@@ -67,7 +67,7 @@ const app = {
     }
   },
 
-  initMenu: function() {
+  initMenu: function () {
     const thisApp = this;
 
     for (let productData in thisApp.data.products) {
@@ -75,7 +75,7 @@ const app = {
     }
   },
 
-  initData: function() {
+  initData: function () {
     const thisApp = this;
 
     thisApp.data = {};
@@ -83,10 +83,10 @@ const app = {
     const url = settings.db.url + '/' + settings.db.product;
 
     fetch(url)
-      .then(function(rawResponse) {
+      .then(function (rawResponse) {
         return rawResponse.json();
       })
-      .then(function(parsedResponse) {
+      .then(function (parsedResponse) {
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
 
@@ -95,7 +95,7 @@ const app = {
       });
   },
 
-  initCart: function() {
+  initCart: function () {
     const thisApp = this;
 
     const cartElem = document.querySelector(select.containerOf.cart);
@@ -103,19 +103,19 @@ const app = {
 
     thisApp.productList = document.querySelector(select.containerOf.menu);
 
-    thisApp.productList.addEventListener('add-to-cart', function(event) {
+    thisApp.productList.addEventListener('add-to-cart', function (event) {
       app.cart.add(event.detail.product);
     });
   },
 
-  initBooking: function() {
+  initBooking: function () {
     const thisApp = this;
 
     const bookingElem = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(bookingElem);
   },
 
-  init: function() {
+  init: function () {
     const thisApp = this;
 
     thisApp.initPages();
