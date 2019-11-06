@@ -6,14 +6,29 @@ const app = {
   initPages: function() {
     const thisApp = this;
 
+    /* find all subpage containers and all links to subpages */
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
+    /* get subpage(to be opened as default) id from hash id */
     const idFromHash = window.location.hash.replace('#/', '');
-    console.log('idFromHash', idFromHash);
 
-    thisApp.activatePage(idFromHash);
+    let pageMatchingHash = thisApp.pages[0].id;
 
+    /* check if any of the subpages matches the id we obtained from the website address,
+    if not open the first subpage, 
+    if so open the subpage that matches the id obtained from the page address */
+    for (let page of thisApp.pages) {
+      if (page.id === idFromHash) {
+        pageMatchingHash = page.id;
+        break;
+      }
+    }
+
+    /* activate the appropriate subpage */
+    thisApp.activatePage(pageMatchingHash);
+
+    /* addEventListener to all links that link to the subpages */
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
         const clickedElement = this;
@@ -71,16 +86,12 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
-
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
 
         /* execute initMenu method */
         thisApp.initMenu();
       });
-
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
 
   initCart: function() {
