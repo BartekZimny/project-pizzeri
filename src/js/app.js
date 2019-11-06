@@ -7,10 +7,12 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
-
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
-    thisApp.activatePage(thisApp.pages[0].id);
+    const idFromHash = window.location.hash.replace('#/', '');
+    console.log('idFromHash', idFromHash);
+
+    thisApp.activatePage(idFromHash);
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function(event) {
@@ -22,6 +24,9 @@ const app = {
 
         /* run thisApp.activatePage with that id */
         thisApp.activatePage(id);
+
+        /* change URL hash */
+        window.location.hash = '#/' + id;
       });
     }
   },
