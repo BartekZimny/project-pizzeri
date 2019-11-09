@@ -62,7 +62,8 @@ export const select = {
   booking: {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
-    tables: '.floor-plan .table'
+    tables: '.floor-plan .table',
+    tablesReserved: '.floor-plan .table.reservation'
   },
   nav: {
     links: '.main-nav a'
