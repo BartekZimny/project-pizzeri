@@ -36,7 +36,10 @@ class DatePicker extends BaseWidget {
           // return true to disable
           return date.getDay() === 1;
         }
-      ]
+      ],
+      onChange: function (selectedDates, dateStr) {
+        thisWidget.value = dateStr;
+      }
     });
   }
 
