@@ -37,13 +37,13 @@ class Booking {
     // console.log('getData urls', urls);
 
     Promise.all([fetch(urls.booking), fetch(urls.eventsCurrent), fetch(urls.eventsRepeat)])
-      .then(function (allResponses) {
+      .then(function(allResponses) {
         const bookingsResponse = allResponses[0];
         const eventsCurrentResponse = allResponses[1];
         const eventsRepeatResponse = allResponses[2];
         return Promise.all([bookingsResponse.json(), eventsCurrentResponse.json(), eventsRepeatResponse.json()]);
       })
-      .then(function ([bookings, eventsCurrent, eventsRepeat]) {
+      .then(function([bookings, eventsCurrent, eventsRepeat]) {
         // console.log(bookings);
         // console.log(eventsCurrent);
         // console.log(eventsRepeat);
@@ -129,30 +129,41 @@ class Booking {
 
     /* find all clickable tables (element that should react to clicking) */
     const allTables = thisBooking.dom.tables;
-    console.log('allTables:', allTables);
 
     /* START LOOP: for each clickable single table */
     for (let singleTable of allTables) {
       /* START: click event listener to single table */
-      singleTable.addEventListener('click', function (event) {
+      singleTable.addEventListener('click', function(event) {
         event.preventDefault();
 
-        /* toggle reservation class on single table */
-        singleTable.classList.toggle(classNames.booking.tableReservation);
+        /* START: if single table don't have booked class */
+        if (!singleTable.classList.contains(classNames.booking.tableBooked)) {
+          /* toggle reservation class on single table */
+          singleTable.classList.toggle(classNames.booking.tableReservation);
+        } else {
+          alert('This table is already booked!');
+        }
+
+        /* find all tables with class 'reservation' */
+        const allReservedTables = document.querySelectorAll(select.booking.tablesReserved);
+
+        /* START LOOP: for each single reserved table */
+        for (let singleReservedTable of allReservedTables) {
+          /* START: if single reserved table isn't single table NOT reserved */
+          if (singleReservedTable !== singleTable) {
+            /* remove class reservation for single reserved table */
+            singleReservedTable.classList.remove(classNames.booking.tableReservation);
+          }
+        }
+
+        thisBooking.dom.hourPicker.addEventListener('updated', function() {
+          singleTable.classList.remove(classNames.booking.tableReservation);
+        });
+
+        thisBooking.dom.datePicker.addEventListener('change', function() {
+          singleTable.classList.remove(classNames.booking.tableReservation);
+        });
       });
-    }
-
-    /* find all reserved tables */
-    const allReservedTables = document.querySelectorAll(select.booking.tablesReserved);
-    console.log('allReservedTables:', allReservedTables);
-
-    /* START LOOP: for each reserved tables */
-    for (let reservedTable of allReservedTables) {
-      /* START: if reserved table.... */
-      if (reservedTable) {
-        /* remove class reservation for the reserved table */
-        reservedTable.classList.remove(classNames.booking.tableReservation);
-      }
     }
   }
 
@@ -198,7 +209,7 @@ class Booking {
 
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('updated', function () {
+    thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();
     });
   }
