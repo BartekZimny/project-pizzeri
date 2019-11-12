@@ -1,253 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Pizzeria</title>
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
-    rel="stylesheet" />
-  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-  <link rel="stylesheet" href="vendor/range-slider.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-
-<body>
-  <header class="header">
-    <div class="container">
-      <div class="header__wrapper">
-        <div class="logo">
-          <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
-          <h2 class="logo__subtitle">the best homemade Italian food</h2>
-        </div>
-        <div class="main-nav">
-          <a href="#order">Order</a>
-          <a href="#booking">Booking</a>
-        </div>
-        <div id="cart" class="cart">
-          <div class="cart__summary">
-            <span class="cart__total-number">5</span>
-            <span class="cart__total-price">Total price: $<strong>0</strong></span>
-            <i class="fas fa-chevron-down"></i>
-            <i class="fas fa-shopping-cart cart__icon"></i>
-          </div>
-          <div class="cart__content">
-            <form class="cart__order">
-              <ul class="cart__order-summary no-spacing"></ul>
-              <ul class="cart__order-price">
-                <li class="cart__order-subtotal">
-                  <span class="cart__order-price-name">Subtotal:</span>
-                  <span class="cart__order-price-sum">$<strong>0</strong></span>
-                </li>
-                <li class="cart__order-delivery">
-                  <span class="cart__order-price-name">Delivery:</span>
-                  <span class="cart__order-price-sum">$<strong>0</strong></span>
-                </li>
-                <li class="cart__order-total">
-                  <span class="cart__order-price-name"><strong>Total:</strong></span>
-                  <span class="cart__order-price-sum">$<strong>0</strong></span>
-                </li>
-              </ul>
-              <div class="cart__order-confirmation">
-                <input type="tel" name="phone" placeholder="Your phone" />
-                <input type="text" name="address" placeholder="Your address" />
-                <button type="submit" class="btn-secondary">Order</button>
-              </div>
-            </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pizzeria</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <div class="logo">
+            <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
+            <h2 class="logo__subtitle">the best homemade Italian food</h2>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <div id="pages">
-    <section id="order">
-      <div id="product-list" class="product-list container"></div>
-    </section>
-    <section id="booking">
-      <div class="booking-wrapper container"></div>
-    </section>
-  </div>
-
-  <script id="template-booking-widget" type="text/x-handlebars-template">
-      <div class="booking-widget">
-        <h2 class="page__title no-spacing">Book a table</h2>
-        <form class="booking-form">
-          <div class="time-picker">
-            <div class="date-picker">
-              <label class="booking-option-title">Pick a date</label>
-              <input type="text" name="date">
-            </div>
-            <div class="hour-picker range-slider">
-                <div class="output"></div>
-                <label class="booking-option-title">Pick a time</label>
-              <input type="range" name="hour" value="12" min="12" max="24" step="0.5">
+    <section class="boxes py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-3 justify-content-center align-items-center order">
+              <img src="images/assets/pizza-1.jpg" alt="image" />
+              <a class="card-body position-absolute text-center" href="subpage.html#/order">
+                <h3>ORDER ONLINE</h3>
+                <p>Delicious food delivered to your door</p>
+              </a>
             </div>
           </div>
-          <div class="floor-plan">
-            <div class="object entry">entry</div>
-            <div class="object bar">bar</div>
-            <div class="object table" data-table="1">table-1</div>
-            <div class="object table table--round" data-table="2">table-2</div>
-            <div class="object table" data-table="3">table-3</div>
+          <div class="col-md-6">
+            <div class="card mb-3 justify-content-center align-items-center book">
+              <img src="images/assets/pizza-2.jpg" alt="image" />
+              <a class="card-body position-absolute text-center" href="subpage.html#/booking">
+                <h3>BOOK A TABLE</h3>
+                <p>Book a table in a few simple steps</p>
+              </a>
+            </div>
           </div>
-          <div class="booking-options"> <!-- options -->
-            <label class="booking-option-title"> <!-- option-row -->
-              People
-              <div class="widget-amount people-amount"> <!-- widget-amount -->
-                <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                <input class="amount" type="text" name="people" value="1">
-                <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
-              </div>
-            </label>
-            <label class="booking-option-title"> <!-- option-row -->
-              Hours
-              <div class="widget-amount hours-amount"> <!-- widget-amount -->
-                <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                <input class="amount" type="text" name="hours" value="1">
-                <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
-              </div>
-            </label>
-            <div> <!-- option-row -->
-              <span class="booking-option-title">Starters</span>
-              <div class="checkbox"> <!-- checkbox -->
-                <label>
-                  <input type="checkbox" name="starter" value="water">
-                  <span class="checkbox__checkmark"></span>
-                  Water
-                </label>
-              </div>
-              <div class="checkbox"> <!-- checkbox -->
-                <label>
-                  <input type="checkbox" name="starter" value="bread">
-                  <span class="checkbox__checkmark"></span>
-                  Bread
-                </label>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="card mb-3 justify-content-center align-items-center opening">
+              <div class="card-body position-absolute text-center">
+                <h3>OPENING HOURS:</h3>
+                <p>TUE - SUN, 12AM - 12PM</p>
               </div>
             </div>
           </div>
-          <div class="order-confirmation">
-            <input type="tel" name="phone" placeholder="Your phone">
-            <input type="text" name="address" placeholder="Your address">
-            <button type="submit" class="btn-secondary">Book table</button>
-          </div>
-        </form>
+        </div>
       </div>
-    </script>
+    </section>
 
-  <script id="template-cart-product" type="text/x-handlebars-template">
-      <li>
-        <div class="widget-amount"> <!-- widget-amount -->
-          <a class="btn-quantity btn-quantity--lt" href="#less"><i class="fas fa-minus"></i></a>
-          <input class="amount" type="text" value="{{ amount }}">
-          <a class="btn-quantity btn-quantity--lt" href="#more"><i class="fas fa-plus"></i></a>
-        </div>
-        <div class="cart__product">
-          <div class="cart__product-header">
-            <span>{{ name }}</span>
-            <span>$<strong class="cart__product-price">{{ price }}</strong></span>
-          </div>
-          <ul class="cart__product-details no-spacing">
-            {{#each params}}
-              <li>
-                <span class="cart__product-details-label">{{ label }}</span>
-                <span>{{#joinValues options}}, {{/joinValues}}</span>
-              </li>
-            {{/each}}
-          </ul>
-        </div>
-        <ul class="cart__action-buttons no-spacing">
-          <li><a href="#edit">Edit<i class="fas fa-pencil-alt"></i></a></li>
-          <li><a href="#remove">Remove<i class="fas fa-trash-alt"></i></a></li>
-        </ul>
-      </li>
-    </script>
-
-  <script id="template-menu-product" type="text/x-handlebars-template">
-      <article class="product"> <!-- product -->
-
-          <header class="product__header">
-            <h3 class="product__name no-spacing">{{ name }} <i class="fas fa-chevron-down product__icon"></i></h3>
-            <p class="product__base-price no-spacing">${{ price }}</p>
-          </header>
-          <div class="product__description"> <!-- description -->
-            <p>{{{ description }}}</p>
-          </div> <!-- .description -->
-          <div class="product__wrapper"> <!-- details -->
-            <form class="product__order">
-              <ul class="product__params"> <!-- params -->
-                {{#each params as |param paramId| }}
-                {{#ifEquals type "checkboxes"}}
-                <li> <!-- checkboxes -->
-                  <h3 class="product__params-title">{{{ label }}}</h3>
-                  {{#each options}}
-                  <div class="checkbox"> <!-- checkbox -->
-                    <label>
-                      <input type="checkbox" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
-                      <span class="checkbox__checkmark"></span>
-                      {{{ label }}} (${{{ price }}})
-                    </label>
-                  </div>
-                  {{/each}}
-                </li>
-                {{/ifEquals}}
-                {{#ifEquals type "radios"}}
-                <li> <!-- radios -->
-                  <h3 class="product__params-title">{{{ label }}}</h3>
-                  {{#each options}}
-                  <div class="checkbox checkbox--round"> <!-- radio -->
-                    <label>
-                      {{{ label }}} (${{{ price }}})
-                      <input type="radio" name="{{ paramId }}" value="{{ @key }}" id="{{ @key }}" {{#if default}}checked{{/if}}>
-                      <span class="checkbox__checkmark"></span>
-                    </label>
-                  </div>
-                  {{/each}}
-                </li>
-                {{/ifEquals}}
-                {{#ifEquals type "select"}}
-                <li> <!-- select -->
-                  <h3 class="product__params-title">{{{ label }}}</h3>
-                  <select name="{{ paramId }}">
-                    {{#each options}}
-                    <option value="{{ @key }}" {{#if default}}selected{{/if}}>{{{ label }}} (${{{ price }}})</option>
-                    {{/each}}
-                  </select>
-                </li>
-                {{/ifEquals}}
-                {{/each}}
-              </ul>
-              <div class="amount"> <!-- controls -->
-                <div class="widget-amount"> <!-- widget-amount -->
-                  <h3 class="product__params-title">Select quantity</h3>
-                  <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                  <input class="amount" type="text" value="1">
-                  <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
-                </div>
-                <p class="product__total-price">
-                  Total: $<span class="price">{{{ price }}}</span>
-                </p>
-                <div> <!-- add-to-cart -->
-                  <a class="btn-primary" href="#add-to-cart">Add to cart</a>
-                </div>
-              </div>
-            </form>
-            <div class="product__images {{ class }}"> <!-- images -->
-              {{#each images}}
-              {{{ this }}}
-              {{/each}}
+    <section class="slider py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-3 justify-content-center align-items-center">
+              <img src="images/assets/pizza-3.jpg" alt="image" />
             </div>
           </div>
+          <div class="col-md-8">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+              <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <blockquote>
+                    <h4>BLANDIT TELLUS</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies purus in bibendum egestas. Mauris pellentesque nunc efficitur quam pretium, quis rhoncus dolor elementum.</p>
+                    <i>- Frank Frink</i>
+                  </blockquote>
+                </div>
+                <div class="carousel-item">
+                  <blockquote>
+                    <h4>NULLA FACILISI</h4>
+                    <p>Etiam euismod magna eu hendrerit finibus. Donec ut malesuada lorem, sit amet fermentum diam. Cras erat arcu, consectetur id scelerisque vitae, ultrices sit amet urna. Cras ut convallis augue, at mattis libero.</p>
+                    <i>- Nabusuke Tagomi</i>
+                  </blockquote>
+                </div>
+                <div class="carousel-item">
+                  <blockquote>
+                    <h4>MAECENAS DICTUM</h4>
+                    <p>Sed non lacus urna. Integer convallis vitae eros eu lacinia. Proin vulputate, turpis eu scelerisque scelerisque, eros turpis commodo ex, non suscipit felis neque at diam.</p>
+                    <i>- Juliana Crain</i>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      </article> <!-- .product -->
-    </script>
+    <section class="gallery py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <img class="card-img" src="images/assets/pizza-4.jpg" alt="image" />
+              <div class="card-img-overlay ovl d-flex justify-content-around align-items-center">
+                <a href="#" target="_blank"><i class="fas fa-heart heart"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-code-branch branch"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <img class="card-img" src="images/assets/pizza-5.jpg" alt="image" />
+              <div class="card-img-overlay ovl d-flex justify-content-around align-items-center">
+                <a href="#" target="_blank"><i class="fas fa-heart heart"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-code-branch branch"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <img class="card-img" src="images/assets/pizza-6.jpg" alt="image" />
+              <div class="card-img-overlay ovl d-flex justify-content-around align-items-center">
+                <a href="#" target="_blank"><i class="fas fa-heart heart"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-code-branch branch"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <img class="card-img" src="images/assets/pizza-7.jpg" alt="image" />
+              <div class="card-img-overlay ovl d-flex justify-content-around align-items-center">
+                <a href="#" target="_blank"><i class="fas fa-heart heart"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-code-branch branch"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <img class="card-img" src="images/assets/pizza-8.jpg" alt="image" />
+              <div class="card-img-overlay ovl d-flex justify-content-around align-items-center">
+                <a href="#" target="_blank"><i class="fas fa-heart heart"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-code-branch branch"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card mb-3">
+              <img class="card-img" src="images/assets/pizza-9.jpg" alt="image" />
+              <div class="card-img-overlay ovl d-flex justify-content-around align-items-center">
+                <a href="#" target="_blank"><i class="fas fa-heart heart"></i></a>
+                <a href="#" target="_blank"><i class="fas fa-code-branch branch"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="vendor/range-slider.min.js"></script>
-  <script src="js/app.js" type="module"></script>
-</body>
+    <footer class="page-footer py-3">
+      <div class="container">
+        <div class="row d-flex justify-content-start">
+          <div class="col-md-4">
+            <a href="#">View more on Instagram</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/components/Home.js" type="module"></script>
+  </body>
 </html>
